@@ -1,18 +1,21 @@
 import React, { useEffect, useState } from 'react'
 import request from 'superagent'
 import { Wrapper } from '@/views/components/wrapper'
+import { VStack } from '@/views/components/VStack'
 import { HStack } from '@/views/components/HStack'
 import { Navigation, NavigationLink } from '@/views/components/Navigation'
 // import { TitleBar } from '@/views/components/TitleBar'
-import { Header } from '@/views/components/Header'
+import { Header, Title } from '@/views/components/Header'
 
 import { fileUtil } from '@/functions/fileUtil'
 
 export const Index = () => {
+    const [choseProject, setChoseProject] = useState({})
     const [projects, setProjects] = useState([])
 
-    const openThisProject = (aMessage) => {
-        alert(aMessage)
+    const openThisProject = (aProject) => {
+        // alert(aMessage)
+        setChoseProject(aProject)
     }
 
     const handleThen = () => {
@@ -41,19 +44,20 @@ export const Index = () => {
                     <NavigationLink
                         projectName={anElement.projectName}
                         filePath={anElement.filePath}
-                        handleClick={() => openThisProject(anElement.projectName)}
+                        handleClick={() => openThisProject(anElement)}
                         key={anIndex} />
                     ))
                 }
             </Navigation>
-            <Wrapper>
-                {/* <TitleBar /> */}
+            <VStack className={'w-100'}>
                 <Header>
-                    <h1>ここがヘッダです。</h1>
+                    <Title>{choseProject.projectName || '名称未設定'}</Title>
                 </Header>
-                <p>{result}</p>
-                <button onClick={ e => api() }>ひくわー</button>
-            </Wrapper>
+                <Wrapper>
+                    <p>{result}</p>
+                    <button onClick={ e => api() }>ひくわー</button>
+                </Wrapper>
+            </VStack>
         </HStack>
     )
 }

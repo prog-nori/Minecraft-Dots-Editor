@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import request from 'superagent'
+import styled from 'styled-components'
+
 import { Wrapper } from '@/views/components/wrapper'
 import { VStack } from '@/views/components/VStack'
 import { HStack } from '@/views/components/HStack'
@@ -9,12 +11,16 @@ import { Header, Title } from '@/views/components/Header'
 
 import { fileUtil } from '@/functions/fileUtil'
 
+const Spacer = styled.div`
+padding-top: 50px;
+`
+
 export const Index = () => {
     const [choseProject, setChoseProject] = useState({})
     const [projects, setProjects] = useState([])
+    const [selectedProject, setSelectedProject] = useState(-1)
 
     const openThisProject = (aProject) => {
-        // alert(aMessage)
         setChoseProject(aProject)
     }
 
@@ -44,18 +50,24 @@ export const Index = () => {
                     <NavigationLink
                         projectName={anElement.projectName}
                         filePath={anElement.filePath}
-                        handleClick={() => openThisProject(anElement)}
+                        isSelected={selectedProject == anIndex}
+                        handleClick={() => {
+                            setSelectedProject(anIndex)
+                            openThisProject(anElement)
+                        }}
                         key={anIndex} />
                     ))
                 }
             </Navigation>
-            <VStack className={'w-100'}>
+            <VStack className={'w-100 vh-100'}>
                 <Header>
                     <Title>{choseProject.projectName || '名称未設定'}</Title>
                 </Header>
-                <Wrapper>
-                    <p>{result}</p>
-                    <button onClick={ e => api() }>ひくわー</button>
+                <Spacer />
+                {/* <Wrapper background={'#f2f4f5'}> */}
+                <Wrapper background={'#ececec'}>
+                    {/* <p>{result}</p>
+                    <button onClick={ e => api() }>ひくわー</button> */}
                 </Wrapper>
             </VStack>
         </HStack>

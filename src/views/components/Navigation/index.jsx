@@ -5,15 +5,18 @@ import { Wrapper } from '@/views/components/wrapper'
 import { TitleBar } from '@/views/components/TitleBar'
 import { CreateNewProject } from '@/views/components/CreateNewProject'
 
-export const NavigationLink = ({projectName, filePath, handleClick}) => {
+export const NavigationLink = ({projectName, filePath, handleClick, isSelected=false}) => {
     const StyledNavigationLink = styled.div`
         width: 100%;
         border-radius: 7px;
         padding: 10px 20px;
+        background: ${isSelected? 'rgb(0, 122, 255)': 'none'};
+        color: ${isSelected? '#fff': '#333'};
         transition: background .2s;
         &:hover {
             cursor: pointer;
-            background-color: #dfe0e1;
+            /* background-color: ${isSelected? 'rgb(0, 92, 191)': '#dfe0e1'}; */
+            background-color: ${isSelected? 'rgb(0, 122, 255)': '#dfe0e1'};
         }
     `
     return (
@@ -39,8 +42,10 @@ export const Navigation = (props) => {
         height: '100vh',
         display: 'flex',
         flexDirection: 'column',
-        backgroundColor: '#f2f4f5',
-        borderRight: 'solid 1px #e7e8e9'
+        // background: '#f2f4f5',
+        background: '#fafafa',
+        // borderRight: 'solid 1px #e7e8e9'
+        borderRight: 'solid 1px #d4d4d4'
     }
     return (
         <div style={navigationStyle} {...props}>

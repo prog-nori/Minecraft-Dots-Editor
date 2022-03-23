@@ -1,12 +1,12 @@
+@import url('./reset.css');
+
 * {
     margin: 0;
     padding: 0;
     text-decoration: none;
     border: none;
     box-sizing: border-box;
-    /* font-family: 'Noto Sans JP', sans-serif; */
     font-family: system-ui,-apple-system,BlinkMacSystemFont;
-    /* position: relative; */
     outline: none;
 }
 
@@ -27,19 +27,9 @@ header button, .draggable button {
 }
 
 .overlay--show {
-    /* display: block; */
-    /* visibility: visible; */
-    /* animation-name: fadeInAnime;
-    animation-duration: .2s;
-    animation-fill-mode: forwards; */
     opacity: 1;
 }
 .overlay--hidden {
-    /* display: none; */
-    /* visibility: hidden; */
-    /* animation-name: fadeOutAnime;
-    animation-duration: .2s;
-    animation-fill-mode: forwards; */
     opacity: 0;
 }
 

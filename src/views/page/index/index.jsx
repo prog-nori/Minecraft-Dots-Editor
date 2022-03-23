@@ -11,6 +11,8 @@ import { Header, Title, ToolbarContent } from '@/views/components/Header'
 
 import { fileUtil } from '@/functions/fileUtil'
 
+import '@/assets/css/styles.css'
+
 const Spacer = styled.div`
 padding-top: 50px;
 `

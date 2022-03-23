@@ -1,0 +1,286 @@
+.overlay-base {
+    padding: 1rem;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0);
+    opacity: 0;
+    transition-property: background-color, opacity;
+    transition-duration: 200ms;
+    transition-timing-function: ease-in-out;
+    outline: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.overlay-after {
+    background-color: rgba(0, 0, 0, 0.25);
+    opacity: 1;
+    z-index: 999;
+}
+
+.overlay-before {
+    background-color: rgba(0, 0, 0, 0);
+    opacity: 0;
+}
+
+.content-base {
+    display: block;
+    text-align: center;
+    max-width: 435px;
+    margin: 0 auto;
+    border: none;
+}
+
+.content-after {
+    display: block;
+    width: 550px;
+    min-width: 256px;
+    max-width: 90%;
+    min-height: 160px;
+    max-height: 95%;
+    padding: 25px;
+    box-shadow: rgb(0 0 0 / 15%) 0 0 15px, rgb(0 0 0 / 10%) 0 0 1px 1px;
+    border-radius: 8px;
+    overflow: auto;
+    outline: none;
+    background-color: #fff;
+}
+/************************************/
+
+.content-after h3.label {
+    text-align: left;
+    font-size: 16px;
+    font-weight: 500;
+    width: 100%;
+    max-width: 256px;
+    line-height: 1.5;
+}
+
+.content-after caption {
+    color: #ff0033;
+    font-size: 12px;
+    width: 100%;
+    text-align: right;
+}
+
+.content-after input[type='text'] {
+    font-size: 17px;
+    max-width: 100%;
+    width: auto;
+    min-width: 288px;
+    border-radius: 7px;
+    height: 50px;
+    background: rgb(255, 255, 255);
+    border: solid 1px #c7c9ca;
+    font-weight: 500;
+    padding: 0 15px;
+    margin-bottom: 30px;
+}
+
+.content-after input[type='text']:focus {
+    outline: 1px solid rgb(0, 122, 255);
+}
+
+.content-after button.submit {
+    font-size: 17px;
+    max-width: 100%;
+    cursor: pointer;
+    width: auto;
+    min-width: 288px;
+    border-radius: 7px;
+    height: 50px;
+    background: rgb(0, 122, 255);
+    color: white;
+    font-weight: 500;
+    padding: 0 20px;
+    margin-top: 24px;
+}
+.content-after button.submit:hover {
+    background-color: rgb(0, 92, 191);
+}
+* {
+    position: relative;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* html,
+  body {
+    margin: 0;
+    padding: 0
+  } */
+
+  body {
+    /* padding: 5px; */
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Helvetica Neue", "Apple Color Emoji", sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.4;
+    user-select: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-app-region: no-drag;
+    transition: transform 225ms cubic-bezier(.4, .0, .2, 1);
+  }
+
+  body.hidden {
+    transform: translateY(-100%);
+    pointer-events: none;
+  }
+
+  input:focus {
+    outline: none
+  }
+
+  input {
+    padding: 5px;
+    padding-right: 0;
+    color: currentColor;
+    border: 0;
+    background-color: transparent;
+  }
+
+  svg {
+    width: 17px;
+    height: 17px;
+    fill: currentColor;
+  }
+
+  #counts {
+    font-size: 12px;
+    opacity: .8;
+  }
+
+  .columns {
+    display: flex
+  }
+
+  .columns-middle {
+    align-items: center
+  }
+
+  .column-stretch {
+    flex: 1 1 auto;
+    height: 100%
+  }
+
+  .box {
+    display: flex;
+    padding: 10px 0;
+    color: #34363a;
+    background-color: #fff;
+    border-radius: 4px;
+    box-shadow:
+      0 0 0 1px rgba(0, 0, 0, 0.1),
+      0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+
+  .section {
+    padding: 0 10px
+  }
+
+  .separator {
+    width: 1px;
+    background-color: rgba(0, 0, 0, 0.15);
+  }
+
+  .button {
+    padding: 4px;
+    border-radius: 6px;
+  }
+
+  .button[disabled] {
+    opacity: .3;
+  }
+
+  .button:not([disabled]):hover {
+    background-color: rgba(0, 0, 0, .05)
+  }
+
+  .button+.button {
+    margin-left: 4px
+  }
+
+  .w-100 { width: 100%; }
+  .vh-100 { height: 100vh; }
+
+  @media (prefers-color-scheme: dark) {
+    .box {
+      color: #dededd;
+      background-color: #151617;
+      box-shadow:
+        0 0 0 1px rgba(0, 0, 0, 0.25),
+        0 2px 4px rgba(0, 0, 0, 0.35);
+    }
+
+    .separator {
+      background-color: rgba(255, 255, 255, .05);
+    }
+  }
+* {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    border: none;
+    box-sizing: border-box;
+    font-family: system-ui,-apple-system,BlinkMacSystemFont;
+    outline: none;
+}
+
+body {
+    background: rgb(36, 43, 43);
+}
+
+header, .draggable{
+    /* header要素とdraggableクラスのみドラッグ可能領域とする */
+    -webkit-app-region: drag;
+    cursor: move; /* ドラッグ可能領域を可視化 */
+}
+
+header button, .draggable button {
+    /* その中にあるボタン要素はドラッグを不可とする */
+    -webkit-app-region: no-drag !important;
+    cursor: auto; /* 通常のカーソルに戻す */
+}
+
+.overlay--show {
+    opacity: 1;
+}
+.overlay--hidden {
+    opacity: 0;
+}
+
+@keyframes fadeInAnime{
+    0% {
+        display: block;
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+  
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOutAnime{
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+  
+    100% {
+        opacity: 0;
+        display: none;
+    }
+}

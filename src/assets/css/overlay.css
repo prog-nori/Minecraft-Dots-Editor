@@ -17,10 +17,9 @@
 }
 
 .overlay-after {
-    /* background-color: rgba(196, 196, 198, 0.5); */
-    /* background-color: rgba(147, 147, 147, 0.5); */
     background-color: rgba(0, 0, 0, 0.25);
     opacity: 1;
+    z-index: 999;
 }
 
 .overlay-before {
@@ -34,30 +33,10 @@
     max-width: 435px;
     margin: 0 auto;
     border: none;
-    /* position: relative;
-    top: auto;
-    left: auto;
-    right: auto;
-    bottom: auto;
-    margin: 0 auto;
-    border: 0;
-    outline: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 0%;
-    width: 0%;
-    background-color: transparent;
-    transition-property: background-color, width, height;
-    transition-duration: 200ms; */
-    /* transition-timing-function: ease-in-out; */
 }
 
 .content-after {
     display: block;
-    /* align-items: center;
-    justify-content: center;
-    flex-direction: column; */
     width: 550px;
     min-width: 256px;
     max-width: 90%;
@@ -67,18 +46,9 @@
     box-shadow: rgb(0 0 0 / 15%) 0 0 15px, rgb(0 0 0 / 10%) 0 0 1px 1px;
     border-radius: 8px;
     overflow: auto;
-    /* border-radius: 15px;
-    border: solid 1px #c7c9ca; */
-    /* background-color: rgba(250, 190, 190, 0.8); */
+    outline: none;
     background-color: #fff;
 }
-
-/* .content-before { */
-    /* width: 0%;
-    height: 0%; */
-    /* background-color: transparent; */
-/* } */
-
 /************************************/
 
 .content-after h3.label {

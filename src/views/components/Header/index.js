@@ -1,5 +1,6 @@
 export {
-    Header
+    Header,
+    ToolbarContent
 } from './header'
 
 export {

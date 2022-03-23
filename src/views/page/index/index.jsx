@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import request from 'superagent'
 import styled from 'styled-components'
+
+import { faPlus } from '@fortawesome/free-solid-svg-icons'
 
 import { Wrapper } from '@/views/components/wrapper'
 import { VStack } from '@/views/components/VStack'
 import { HStack } from '@/views/components/HStack'
 import { Navigation, NavigationLink } from '@/views/components/Navigation'
-// import { TitleBar } from '@/views/components/TitleBar'
-import { Header, Title } from '@/views/components/Header'
+import { Header, Title, ToolbarContent } from '@/views/components/Header'
 
 import { fileUtil } from '@/functions/fileUtil'
 
@@ -31,17 +31,10 @@ export const Index = () => {
     }
     useEffect(handleThen, [])
 
-    const [result, setResult] = useState('')
-    const api = () => {
-        request.get('api/kuji').end((err, res) => {
-            if (err) {
-                console.log(err)
-                return
-            }
-            const result = res.body.result
-            setResult(result)
-        })
+    const act = () => {
+        alert('action')
     }
+
     return (
         <HStack>
             <Navigation observeProjects={handleThen}>
@@ -52,6 +45,9 @@ export const Index = () => {
                         filePath={anElement.filePath}
                         isSelected={selectedProject == anIndex}
                         handleClick={() => {
+                            if(selectedProject != -1) {
+                                // セーブ処理を行う
+                            }
                             setSelectedProject(anIndex)
                             openThisProject(anElement)
                         }}
@@ -62,12 +58,16 @@ export const Index = () => {
             <VStack className={'w-100 vh-100'}>
                 <Header>
                     <Title>{choseProject.projectName || '名称未設定'}</Title>
+                    {
+                        selectedProject >= 0 && (
+                            <HStack>
+                                <ToolbarContent icon={faPlus} action={act} />
+                            </HStack>
+                        )
+                    }
                 </Header>
                 <Spacer />
-                {/* <Wrapper background={'#f2f4f5'}> */}
                 <Wrapper background={'#ececec'}>
-                    {/* <p>{result}</p>
-                    <button onClick={ e => api() }>ひくわー</button> */}
                 </Wrapper>
             </VStack>
         </HStack>

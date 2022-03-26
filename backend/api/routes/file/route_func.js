@@ -14,9 +14,11 @@ const createFunc = (req, res) => {
         sheets: []
     }, null, 4)
     const projectDir = 'backend/config/projects'
-    // const fileName = `${projectDir}/${req.query.fileName.replace(' ', '')}.json`
-    const fileName = `${projectDir}/${req.query.fileName.replace(' ', '')}`
-    write(fileName, aJSON).then(response => {
+    // const aPath = `${projectDir}/${req.query.fileName.replace(' ', '')}.json`
+    const fileName = req.query.fileName.replace(' ', '')
+    const aPath = `${projectDir}/${fileName}`
+    write(aPath, aJSON).then(response => {
+        // addProject(req.query.projectName, aPath, today)
         addProject(req.query.projectName, fileName, today)
         res.json({
             result: 'ファイル作りますね〜',

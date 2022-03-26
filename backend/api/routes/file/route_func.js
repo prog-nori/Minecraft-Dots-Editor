@@ -14,11 +14,9 @@ const createFunc = (req, res) => {
         sheets: []
     }, null, 4)
     const projectDir = 'backend/config/projects'
-    // const aPath = `${projectDir}/${req.query.fileName.replace(' ', '')}.json`
     const fileName = req.query.fileName.replace(' ', '')
     const aPath = `${projectDir}/${fileName}`
-    write(aPath, aJSON).then(response => {
-        // addProject(req.query.projectName, aPath, today)
+    write(`${aPath}.json`, aJSON).then(response => {
         addProject(req.query.projectName, fileName, today)
         res.json({
             result: 'ファイル作りますね〜',

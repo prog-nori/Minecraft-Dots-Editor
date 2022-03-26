@@ -35,7 +35,6 @@ export const Index = () => {
                 aList.push(anElement)
             })
             setProjects(aList)
-            // setProjects(resp)
         })
         return
     }
@@ -58,7 +57,6 @@ export const Index = () => {
                             if(selectedProject != -1) {
                                 // セーブ処理を行う
                             }
-                            console.log(anElement)
                             setSelectedProject(anIndex)
                             openProject(anElement)
                         }}

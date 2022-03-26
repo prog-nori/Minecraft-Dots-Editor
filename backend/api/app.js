@@ -7,7 +7,8 @@ var logger = require('morgan');
 var app = express();
 
 var kuji = require('./routes/kuji')
-var fileUtil = require('./routes/fileUtil')
+// var fileUtil = require('./routes/fileUtil')
+var fileUtil = require('./routes/file/index.js')
 
 app.use(logger('dev'));
 app.use(express.json());

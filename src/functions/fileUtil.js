@@ -2,6 +2,10 @@ import request from 'superagent'
 import 'babel-polyfill'
 
 export const fileUtil = {
+    // configファイルのあるディレクトリのパス
+    // getConfig: () => 'backend/config/config.json',
+    // プロジェクトのjsonのあるディレクトリのパス
+    // getProjectPath: () => 'backend/config/projects/',
     project: {
         create: async ({projectName, fileName}) => {
             // プロジェクトを作成する
@@ -16,16 +20,6 @@ export const fileUtil = {
                     }
                 })
             return response
-            // return await request.get(`api/file/create?projectName=${projectName}&fileName=${fileName}`)
-            //     .then(res => {
-            //         return res.body.result
-            //     })
-            //     .catch(err => {
-            //         if (err) {
-            //             console.log(err)
-            //             return err
-            //         }
-            //     })
         },
         read: {
             byName: () => {

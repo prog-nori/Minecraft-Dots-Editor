@@ -22,13 +22,21 @@ export const Index = () => {
     const [projects, setProjects] = useState([])
     const [selectedProject, setSelectedProject] = useState(-1)
 
-    const openThisProject = (aProject) => {
+    const openProject = (aProject) => {
         setChoseProject(aProject)
     }
 
     const handleThen = () => {
         fileUtil.project.read.all()
-        .then(resp => setProjects(resp))
+        .then(resp => {
+            const aList = []
+            resp.map(anElement => {
+                anElement.filePath = `${anElement.filePath}.json`
+                aList.push(anElement)
+            })
+            setProjects(aList)
+            // setProjects(resp)
+        })
         return
     }
     useEffect(handleThen, [])
@@ -50,8 +58,9 @@ export const Index = () => {
                             if(selectedProject != -1) {
                                 // セーブ処理を行う
                             }
+                            console.log(anElement)
                             setSelectedProject(anIndex)
-                            openThisProject(anElement)
+                            openProject(anElement)
                         }}
                         key={anIndex} />
                     ))

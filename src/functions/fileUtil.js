@@ -1,6 +1,8 @@
 import request from 'superagent'
 import 'babel-polyfill'
 
+import { callApiThenGetBody } from './apiUtil'
+
 export const fileUtil = {
     // configファイルのあるディレクトリのパス
     // getConfig: () => 'backend/config/config.json',
@@ -22,21 +24,22 @@ export const fileUtil = {
             return response
         },
         read: {
-            byName: () => {
+            byName: async ({fileName}) => {
                 // 特定のプロジェクトを読み込む(取得する)
+                const response = callApiThenGetBody(`api/file/read/project?fileName=${fileName}`)
+                .then(resp => resp.data)
+                .catch(e => {
+                    console.log(e)
+                })
+                return response
             },
             all: async () => {
                 // 全てのプロジェクトを読み込む。backend/config/config.jsonより降順ソートして。
-                const response = await request.get(`api/file/read/all-projects`)
-                    .then(res => {
-                        return res.body.data
-                    })
-                    .catch(err => {
-                        if(err) {
-                            console.log(err)
-                            return err
-                        }
-                    })
+                const response = callApiThenGetBody(`api/file/read/all-projects`)
+                .then(resp => resp.data)
+                .catch(e => {
+                    console.log(e)
+                })
                 return response
             }
         },

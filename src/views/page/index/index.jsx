@@ -23,22 +23,25 @@ export const Index = () => {
     const [selectedProject, setSelectedProject] = useState(-1)
 
     const openProject = (aProject) => {
-        setChoseProject(aProject)
+        fileUtil.project.read.byName({fileName: aProject.filePath})
+        .then(response => {
+            setChoseProject(response)
+        })
     }
 
     const handleThen = () => {
         fileUtil.project.read.all()
         .then(resp => {
-            const aList = []
-            resp.map(anElement => {
-                anElement.filePath = `${anElement.filePath}.json`
-                aList.push(anElement)
-            })
-            setProjects(aList)
+            setProjects(resp)
+            setSelectedProject(0)
+            openProject(resp[0])
         })
         return
     }
-    useEffect(handleThen, [])
+    useEffect(() => {
+        fileUtil.project.read.all()
+        .then(resp => setProjects(resp))
+    }, [])
 
     const act = () => {
         alert('action')
@@ -51,7 +54,6 @@ export const Index = () => {
                     projects.map((anElement, anIndex) => (
                     <NavigationLink
                         projectName={anElement.projectName}
-                        filePath={anElement.filePath}
                         isSelected={selectedProject == anIndex}
                         handleClick={() => {
                             if(selectedProject != -1) {
@@ -66,7 +68,7 @@ export const Index = () => {
             </Navigation>
             <VStack className={'w-100 vh-100'}>
                 <Header>
-                    <Title>{choseProject.projectName || '名称未設定'}</Title>
+                    <Title>{choseProject.name || '名称未設定'}</Title>
                     {
                         selectedProject >= 0 && (
                             <HStack>

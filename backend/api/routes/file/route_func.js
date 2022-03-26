@@ -31,6 +31,13 @@ const createFunc = (req, res) => {
 }
 
 const readFuncs = {
+    aProject: (req, res) => {
+        const projectPath = `backend/config/projects/${req.query.fileName.replace(' ', '')}.json`
+        const aJSON = read(projectPath)
+        res.json({
+            data: aJSON
+        })
+    },
     allProjects: (req, res) => {
         const projects = read('backend/config/config.json').projects
         projects.sort((a, b) => {
@@ -41,17 +48,6 @@ const readFuncs = {
         res.json({
             data: projects
         })
-    },
-    aProject: (req, res) => {
-        // const projects = read('backend/config/config.json').projects
-        // projects.sort((a, b) => {
-        //     if(a.updatedDate > b.updatedDate) return -1
-        //     if(a.updatedDate < b.updatedDate) return 1
-        //     return 0
-        // })
-        // res.json({
-        //     data: projects
-        // })
     },
 }
 

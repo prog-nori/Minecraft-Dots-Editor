@@ -5,7 +5,7 @@ import { Wrapper } from '@/views/components/wrapper'
 import { TitleBar } from '@/views/components/TitleBar'
 import { CreateNewProject } from '@/views/components/CreateNewProject'
 
-export const NavigationLink = ({projectName, filePath, handleClick, isSelected=false}) => {
+export const NavigationLink = ({projectName, handleClick, isSelected=false}) => {
     const StyledNavigationLink = styled.div`
         width: 100%;
         border-radius: 7px;

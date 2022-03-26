@@ -1,5 +1,5 @@
 const dateUtil = require('../../util/dateUtil')
-const { addProject, write, read } = require('../../util/fileUtil')
+const { addProject, updateProject, write, read } = require('../../util/fileUtil')
 
 const createFunc = (req, res) => {
     /**
@@ -11,7 +11,7 @@ const createFunc = (req, res) => {
     const aJSON = JSON.stringify({
         name: req.query.projectName,
         created: today,
-        sheets: []
+        sheets: {}
     }, null, 4)
     const projectDir = 'backend/config/projects'
     const fileName = req.query.fileName.replace(' ', '')
@@ -39,21 +39,49 @@ const readFuncs = {
         })
     },
     allProjects: (req, res) => {
-        const projects = read('backend/config/config.json').projects
-        projects.sort((a, b) => {
-            if(a.updatedDate > b.updatedDate) return -1
-            if(a.updatedDate < b.updatedDate) return 1
-            return 0
-        })
-        res.json({
-            data: projects
-        })
+        try {
+            const projects = read('backend/config/config.json').projects
+            projects.sort((a, b) => {
+                if(a.updatedDate > b.updatedDate) return -1
+                if(a.updatedDate < b.updatedDate) return 1
+                return 0
+            })
+            res.json({
+                data: projects
+            })
+        } catch(e) {
+            console.log('エラー')
+            console.log(e)
+        }
     },
+}
+
+const updateFunc = (req, res) => {
+    const today = dateUtil.today()
+    const anObject = JSON.parse(req.query.data)
+    const aJSON = JSON.stringify(anObject, null, 4)
+    const projectDir = 'backend/config/projects'
+    const fileName = req.query.fileName.replace(' ', '')
+    const aPath = `${projectDir}/${fileName}`
+
+    write(`${aPath}.json`, aJSON).then(response => {
+        updateProject(anObject.name, fileName, today)
+        res.json({
+            result: 'ファイル更新',
+            status: response
+        })
+    }).catch(err => {
+        res.json({
+            result: 'ファイル更新失敗',
+            status: err
+        })
+    })
 }
 
 const modules = {
     create: createFunc,
     read: readFuncs,
+    update: updateFunc
 }
 
 module.exports = modules

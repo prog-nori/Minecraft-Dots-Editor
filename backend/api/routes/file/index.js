@@ -11,4 +11,7 @@ router.get('/read/all-projects', func.read.allProjects)
 // GET /api/file/read/project
 router.get('/read/project', func.read.aProject)
 
+// GET /api/file/read/project
+router.get('/update', func.update)
+
 module.exports = router

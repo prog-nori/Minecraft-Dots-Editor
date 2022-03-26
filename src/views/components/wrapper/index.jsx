@@ -1,7 +1,6 @@
 import React from 'react'
 
 export const Wrapper = (props) => {
-    console.log(props.background)
     const wrapperStyle = {
         width: '100%',
         height: '100%',

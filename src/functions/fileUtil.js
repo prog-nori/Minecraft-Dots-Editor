@@ -28,23 +28,32 @@ export const fileUtil = {
                 // 特定のプロジェクトを読み込む(取得する)
                 const response = callApiThenGetBody(`api/file/read/project?fileName=${fileName}`)
                 .then(resp => resp.data)
-                .catch(e => {
-                    console.log(e)
+                .catch(err => {
+                    console.log(err)
                 })
                 return response
             },
             all: async () => {
                 // 全てのプロジェクトを読み込む。backend/config/config.jsonより降順ソートして。
                 const response = callApiThenGetBody(`api/file/read/all-projects`)
-                .then(resp => resp.data)
+                .then(resp => {
+                    return resp.data
+                })
                 .catch(e => {
-                    console.log(e)
+                    throw e
                 })
                 return response
             }
         },
-        update: () => {
-            // プロジェクトを更新する
+        update: async ({fileName, anObject}) => {
+            // プロジェクトを更新(上書き)する
+            const aJSON = JSON.stringify(anObject, null, 4)
+            const response = callApiThenGetBody(`api/file/update?fileName=${fileName}&data=${aJSON}`)
+            .then(resp => resp.data)
+            .catch(e => {
+                console.log(e)
+            })
+            return response
         },
         delete: () => {
             // プロジェクトを削除する

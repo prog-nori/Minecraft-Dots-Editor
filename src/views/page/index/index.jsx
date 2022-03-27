@@ -18,7 +18,6 @@ padding-top: 50px;
 `
 
 export const Index = () => {
-    console.log('on load')
     const [choseProject, setChoseProject] = useState({})
     const [projects, setProjects] = useState([])
     const [selectedProject, setSelectedProject] = useState(-1)
@@ -32,10 +31,8 @@ export const Index = () => {
     }
 
     const updateNavigationContents = () => {
-        console.log('after')
         fileUtil.project.read.all()
         .then(resp => {
-            console.log('then')
             setProjects(resp)
         })
         .catch(err => console.log('エラー', err))
@@ -69,7 +66,7 @@ export const Index = () => {
 
     return (
         <HStack>
-            <Navigation observeProjects={handleThen}>
+            <Navigation observeprojects={handleThen}>
                 {
                     projects.map((anElement, anIndex) => (
                     <NavigationLink
@@ -92,7 +89,6 @@ export const Index = () => {
                             setSelectedProject(anIndex)
                             openProject(anElement)
                             setIsEdited(false)
-                            console.log('before')
                             updateNavigationContents()
                         }}
                         key={anIndex} />

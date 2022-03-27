@@ -42,7 +42,12 @@ const addProject = (projectName, aFilePath, updatedDate) => {
         data.projects[foundIndex].projectName = projectName
     }
     data.projects[foundIndex].updatedDate = updatedDate
-    writeSync(configFilePath, JSON.stringify(data, null, 4))
+    try {
+        writeSync(configFilePath, JSON.stringify(data, null, 4))
+    } catch(e) {
+        console.log('更新エラー')
+        console.log(e)
+    }
 }
 
 /**
@@ -77,7 +82,7 @@ const write = async (aPath, json, type=FileType.file) => {
         if(!fs.existsSync(dir)) {
             mkdirp(dir)
         }
-        await fs.writeFile(aPath, json)
+        await fs.writeFileSync(aPath, json)
     } catch(e) {
         console.log('エラー [writeSync]')
         console.log(e)

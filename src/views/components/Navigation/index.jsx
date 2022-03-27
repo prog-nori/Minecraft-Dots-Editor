@@ -54,7 +54,7 @@ export const Navigation = (props) => {
             <Wrapper>
                 {props.children}
                 <Spacer />
-                <CreateNewProject handleThen={() => props.observeProjects()} />
+                <CreateNewProject handleThen={() => props.observeprojects()} />
                 <Spacer />
             </Wrapper>
         </div>
